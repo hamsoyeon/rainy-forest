@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Default">
+      <UniqueIdentifier>{8815e03f-ecf1-4803-bc1b-81bb89592131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{cbb07098-11f7-4af4-b909-9bb4a0ede685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{dd4b5f8e-b9bd-47b1-8b17-34cbeef13aa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\01. Mgr">
+      <UniqueIdentifier>{18ca6384-fcda-4cbc-9462-8a1d1974201f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\03. Socket">
+      <UniqueIdentifier>{44e86126-a79f-4cb1-8750-46270f8376f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\02. Model">
+      <UniqueIdentifier>{7196400d-7864-4d0f-95a1-fbc373ed6c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\01. Mgr\Main">
+      <UniqueIdentifier>{71205e2e-07fb-42ce-9c0a-44b98ab23f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\01. Mgr\Main\DBMgr">
+      <UniqueIdentifier>{2cf21ba1-3820-48a1-9539-8ed9e6d9825e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\01. Mgr\Main\LoginMgr">
+      <UniqueIdentifier>{2972bc47-e72b-45ab-b3b1-33cf89c380c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\01. Mgr\Main\MainMgr">
+      <UniqueIdentifier>{7a81645a-e5e8-4405-b0f3-603c72a62226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\01. Mgr\Game">
+      <UniqueIdentifier>{4a485d8d-c25b-4e4c-b445-f4ffea044189}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\01. Mgr\Main\SessionMgr">
+      <UniqueIdentifier>{772118ca-8fbe-4af0-b148-a920ddc9130a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\01. Mgr\Main\LogMgr">
+      <UniqueIdentifier>{a6aa0ef6-d463-4e20-9b9d-27a49fd6ea7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\03. Socket\Socket">
+      <UniqueIdentifier>{87da7d31-c8f1-4201-863a-ac2915f61512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\03. Socket\Session">
+      <UniqueIdentifier>{618a9eca-07b7-4b93-a88f-0d9f6656ca21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\03. Socket\Packet">
+      <UniqueIdentifier>{cac9cc6b-e519-418a-8ac3-8b5dcb4c4fe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\02. Model\IOCP">
+      <UniqueIdentifier>{29c7200c-980c-4b92-b33c-d9277bb7f754}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CSocket.cpp">
+      <Filter>Source\03. Socket\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp" />
+    <ClCompile Include="CPacket.cpp">
+      <Filter>Source\03. Socket\Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="CMainMgr.cpp">
+      <Filter>Source\01. Mgr\Main\MainMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSession.cpp">
+      <Filter>Source\03. Socket\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="CIocp.cpp">
+      <Filter>Source\02. Model\IOCP</Filter>
+    </ClCompile>
+    <ClCompile Include="CSessionMgr.cpp">
+      <Filter>Source\01. Mgr\Main\SessionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CLoginMgr.cpp">
+      <Filter>Source\01. Mgr\Main\LoginMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="func.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="CSocket.h">
+      <Filter>Source\03. Socket\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="CPacket.h">
+      <Filter>Source\03. Socket\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="CMainMgr.h">
+      <Filter>Source\01. Mgr\Main\MainMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CSession.h">
+      <Filter>Source\03. Socket\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="CIocp.h">
+      <Filter>Source\02. Model\IOCP</Filter>
+    </ClInclude>
+    <ClInclude Include="CSessionMgr.h">
+      <Filter>Source\01. Mgr\Main\SessionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CLoginMgr.h">
+      <Filter>Source\01. Mgr\Main\LoginMgr</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
