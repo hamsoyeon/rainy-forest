@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Default">
+      <UniqueIdentifier>{82456b12-f446-475b-bc7d-5810cc753afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{91ce930b-8323-45b9-8a03-147ba81cf889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{721a9445-094f-4720-913f-1176f625fbd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr">
+      <UniqueIdentifier>{c4864669-e050-4c4c-afad-5d4eb6c2cbdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr\CSessionMgr">
+      <UniqueIdentifier>{5f20053e-269e-4597-9738-928880734a8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr\CLoginMgr">
+      <UniqueIdentifier>{25d5f7a4-2059-4e82-8f45-cae7f35e563c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr\CMainMgr">
+      <UniqueIdentifier>{780075c9-fc67-424a-b6f4-de6051ac84e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\03. Socket">
+      <UniqueIdentifier>{d413d30d-d14f-49c3-afb0-fa8d9db8a83b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr\CDBMgr">
+      <UniqueIdentifier>{99e15483-dc1e-4a58-9cb9-9936c62c99c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr\CLogMgr">
+      <UniqueIdentifier>{4cb71a0f-be2b-4ae6-92ff-28f4b4ec120a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\04. State">
+      <UniqueIdentifier>{0614a9a5-6356-4a9a-8cfa-1408121fcbea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\04. State\LoginState">
+      <UniqueIdentifier>{039c6078-5829-49d1-a1ba-e8005c36c821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\03. Socket\Socket">
+      <UniqueIdentifier>{a3218a7a-028c-41b7-b44b-42ddfa0e047f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\03. Socket\Session">
+      <UniqueIdentifier>{c86b7ffe-eac4-458e-b07c-3015d4715ccf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\03. Socket\Packet">
+      <UniqueIdentifier>{a4e65923-f473-40bb-9e88-2b8cab84717d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\02. Core">
+      <UniqueIdentifier>{8a531da2-4926-43d0-9440-b1e9c6a886c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\05. SetCtrlHandler">
+      <UniqueIdentifier>{1a4c4ad0-e752-4af5-8fbe-1c51d4fb060e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\04. State\LobbyState">
+      <UniqueIdentifier>{28975298-8566-4b42-bab4-3c0eca08bbd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr\CProtocolMgr">
+      <UniqueIdentifier>{b77bc093-0c8c-478a-b60a-0130b810b43a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\06. Crypt">
+      <UniqueIdentifier>{62349c25-964a-4ca2-a5b8-ad00562e739f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\02. Core\Lock">
+      <UniqueIdentifier>{14be333b-b5ca-4c21-82eb-bdc464acca01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\02. Core\LockGuard">
+      <UniqueIdentifier>{4b071d09-45ff-49ee-97ad-9b4c141bf0d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\02. Core\CLockGuard_Static">
+      <UniqueIdentifier>{dd3a6d2c-573b-4c11-be29-5c1d52005c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr\CRoomMgr">
+      <UniqueIdentifier>{f8aa833a-77b8-4dc1-b89f-0bd91fdf9369}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\07. Room">
+      <UniqueIdentifier>{18c23669-470c-4cba-989b-367a3c283b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\01. Mgr\CLobbyMgr">
+      <UniqueIdentifier>{0dcab43d-5a48-4bf5-85ef-88021faee270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\04. State\StageState">
+      <UniqueIdentifier>{5a1da06a-e820-4539-9c5e-23668d72de8d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CSocket.cpp">
+      <Filter>Sources\03. Socket\Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp" />
+    <ClCompile Include="main.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="CSession.cpp">
+      <Filter>Sources\03. Socket\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="CPacket.cpp">
+      <Filter>Sources\03. Socket\Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="CIocp.cpp">
+      <Filter>Sources\02. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CSessionMgr.cpp">
+      <Filter>Sources\01. Mgr\CSessionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CMainMgr.cpp">
+      <Filter>Sources\01. Mgr\CMainMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CLoginMgr.cpp">
+      <Filter>Sources\01. Mgr\CLoginMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CLogMgr.cpp">
+      <Filter>Sources\01. Mgr\CLogMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CDBMgr.cpp">
+      <Filter>Sources\01. Mgr\CDBMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CState.cpp">
+      <Filter>Sources\04. State</Filter>
+    </ClCompile>
+    <ClCompile Include="C_SetCtrlHandler.cpp">
+      <Filter>Sources\05. SetCtrlHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="CLoginState.cpp">
+      <Filter>Sources\04. State\LoginState</Filter>
+    </ClCompile>
+    <ClCompile Include="CLobbyState.cpp">
+      <Filter>Sources\04. State\LobbyState</Filter>
+    </ClCompile>
+    <ClCompile Include="CProtocolMgr.cpp">
+      <Filter>Sources\01. Mgr\CProtocolMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CCrypt.cpp">
+      <Filter>Sources\06. Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="CLock.cpp">
+      <Filter>Sources\02. Core\Lock</Filter>
+    </ClCompile>
+    <ClCompile Include="CLockGuard.cpp">
+      <Filter>Sources\02. Core\LockGuard</Filter>
+    </ClCompile>
+    <ClCompile Include="CLockGuard_Static.cpp">
+      <Filter>Sources\02. Core\CLockGuard_Static</Filter>
+    </ClCompile>
+    <ClCompile Include="CRoomMgr.cpp">
+      <Filter>Sources\01. Mgr\CRoomMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CRoom.cpp">
+      <Filter>Sources\07. Room</Filter>
+    </ClCompile>
+    <ClCompile Include="CLobbyMgr.cpp">
+      <Filter>Sources\01. Mgr\CLobbyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageState.cpp">
+      <Filter>Sources\04. State\StageState</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CSocket.h">
+      <Filter>Sources\03. Socket\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="func.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSession.h">
+      <Filter>Sources\03. Socket\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="CPacket.h">
+      <Filter>Sources\03. Socket\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="CIocp.h">
+      <Filter>Sources\02. Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CSessionMgr.h">
+      <Filter>Sources\01. Mgr\CSessionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CMainMgr.h">
+      <Filter>Sources\01. Mgr\CMainMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CLoginMgr.h">
+      <Filter>Sources\01. Mgr\CLoginMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CLogMgr.h">
+      <Filter>Sources\01. Mgr\CLogMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CDBMgr.h">
+      <Filter>Sources\01. Mgr\CDBMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Sources\04. State</Filter>
+    </ClInclude>
+    <ClInclude Include="C_SetCtrlHandler.h">
+      <Filter>Sources\05. SetCtrlHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="CLoginState.h">
+      <Filter>Sources\04. State\LoginState</Filter>
+    </ClInclude>
+    <ClInclude Include="CLobbyState.h">
+      <Filter>Sources\04. State\LobbyState</Filter>
+    </ClInclude>
+    <ClInclude Include="CProtocolMgr.h">
+      <Filter>Sources\01. Mgr\CProtocolMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CCrypt.h">
+      <Filter>Sources\06. Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="CLock.h">
+      <Filter>Sources\02. Core\Lock</Filter>
+    </ClInclude>
+    <ClInclude Include="CLockGuard.h">
+      <Filter>Sources\02. Core\LockGuard</Filter>
+    </ClInclude>
+    <ClInclude Include="CLockGuard_Static.h">
+      <Filter>Sources\02. Core\CLockGuard_Static</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoomMgr.h">
+      <Filter>Sources\01. Mgr\CRoomMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CRoom.h">
+      <Filter>Sources\07. Room</Filter>
+    </ClInclude>
+    <ClInclude Include="CLobbyMgr.h">
+      <Filter>Sources\01. Mgr\CLobbyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CStageState.h">
+      <Filter>Sources\04. State\StageState</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icop최함예소람연.rc">
+      <Filter>Default</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
