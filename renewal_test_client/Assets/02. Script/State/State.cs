@@ -13,10 +13,10 @@ namespace test_client_unity
 
     abstract public class State : MonoBehaviour
     {
-        public abstract void Recv(Byte[] _buf, uint _protocol);
+        public abstract void Recv(Byte[] _buf, Byte[] _protocol);
         public abstract void RecvEvent(t_Eve _eve);
 
-        public abstract void Send(Byte[] _buf, uint _protocol);
+        public abstract void Send(Byte[] _buf, int _protocol);
         public abstract void SendEvent(t_Eve _eve);
     }
 }

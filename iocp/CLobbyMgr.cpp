@@ -50,9 +50,50 @@ void CLobbyMgr::RoomListUpdateProc(CSession* _ptr)
 	for (tRoom* room : *roomList) // 현재 존재하는 방들의 정보를 클라이언트에게 보낸다.
 	{
 		unsigned long protocol = 0;
-		CProtocolMgr::GetInst()->AddSubProtocol(&protocol, (unsigned long)SUB_PROTOCOL::RoomlistResult);
+		CProtocolMgr::GetInst()->AddSubProtocol(&protocol, (unsigned long)SUB_PROTOCOL::ROOM_RESULT);
+		CProtocolMgr::GetInst()->AddDetailProtocol(&protocol, (unsigned long)SERVER_DETAIL_PROTOCOL::ROOMLIST_UPDATE_SUCCESS);
 		Packing(protocol, room->roomName, room->roomNum, room->playerList.size(), _ptr);
 	}
+}
+
+void CLobbyMgr::MakeRoomProc(CSession* _ptr)
+{
+	// 클라이언트로 부터 방이름을 받는다.
+
+	BYTE buf[BUFSIZE]; ZeroMemory(buf, BUFSIZE);
+	TCHAR roomName[BUFSIZE]; ZeroMemory(roomName, BUFSIZE * 2);
+
+	_ptr->UnPacking(buf); // 데이터 버퍼만..
+	UnPacking(buf, roomName); // 언팩한 이름의 방을 만들어준다.
+
+	CRoomMgr::GetInst()->MakeRoom(roomName, _ptr);
+
+	unsigned long protocol = 0;
+	CProtocolMgr::GetInst()->AddSubProtocol(&protocol, (unsigned long)SUB_PROTOCOL::ROOM_RESULT);
+	CProtocolMgr::GetInst()->AddDetailProtocol(&protocol, (unsigned long)SERVER_DETAIL_PROTOCOL::MAKE_ROOM_SUCCESS);
+
+	_ptr->Packing(protocol, nullptr);
+
+	//Packing(protocol, room->roomName, room->roomNum, room->playerList.size(), _ptr);
+}
+
+void CLobbyMgr::EnterRoomProc(CSession* _ptr)
+{
+	// 방넘버를 통해서 session 집어넣기
+	// 방넘버를 unpack
+	BYTE buf[BUFSIZE]; ZeroMemory(buf, BUFSIZE); 
+	int room_number;
+
+	_ptr->UnPacking(buf);
+	UnPacking(buf, room_number);
+
+	CRoomMgr::GetInst()->EnterRoom(_ptr, room_number);
+
+	unsigned long protocol = 0;
+	CProtocolMgr::GetInst()->AddSubProtocol(&protocol, (unsigned long)SUB_PROTOCOL::ROOM_RESULT);
+	CProtocolMgr::GetInst()->AddDetailProtocol(&protocol, (unsigned long)SERVER_DETAIL_PROTOCOL::ENTER_ROOM_SUCCESS);
+	
+	_ptr->Packing(protocol, nullptr);
 }
 
 void CLobbyMgr::ChatSendProc(CSession* _ptr)
@@ -69,7 +110,8 @@ void CLobbyMgr::ChatSendProc(CSession* _ptr)
 	for (CSession* session : m_sessionList) // 현재 로비에 있는 클라이언트들에게 메시지를 보낸다.
 	{
 		unsigned long protocol = 0;
-		CProtocolMgr::GetInst()->AddSubProtocol(&protocol, (unsigned long)SUB_PROTOCOL::ChatRecv);
+		CProtocolMgr::GetInst()->AddSubProtocol(&protocol, (unsigned long)SUB_PROTOCOL::CHAT_RESULT);
+		CProtocolMgr::GetInst()->AddDetailProtocol(&protocol, (unsigned long)SERVER_DETAIL_PROTOCOL::ALL_MSG_SUCCESS);
 		Packing(protocol, msg, session);
 	}
 }
@@ -117,7 +159,9 @@ void CLobbyMgr::Packing(unsigned long _protocol, const TCHAR* _roomName, const i
 	_ptr->Packing(_protocol, buf, size);
 }
 
-void CLobbyMgr::UnPacking(const BYTE* _buf, TCHAR* _msg)
+
+
+void CLobbyMgr::UnPacking(const BYTE* _buf, TCHAR* _str)
 {
 	const BYTE* ptr = _buf;
 	int msg_size = 0;
@@ -125,7 +169,15 @@ void CLobbyMgr::UnPacking(const BYTE* _buf, TCHAR* _msg)
 	memcpy(&msg_size, ptr, sizeof(int));
 	ptr += sizeof(int);
 
-	memcpy(_msg, ptr, msg_size);
+	memcpy(_str, ptr, msg_size);
 
+}
+
+void CLobbyMgr::UnPacking(const BYTE* _buf, int& _data)
+{
+	const BYTE* ptr = _buf;
+	int msg_size = 0;
+
+	memcpy(&_data, ptr, sizeof(int));
 }
 

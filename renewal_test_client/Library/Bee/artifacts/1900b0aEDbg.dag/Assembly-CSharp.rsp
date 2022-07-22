@@ -341,8 +341,10 @@
 "Assets/01. Default/initialize.cs"
 "Assets/02. Script/01. Mgr/LobbyMgr.cs"
 "Assets/02. Script/01. Mgr/LoginMgr.cs"
+"Assets/02. Script/01. Mgr/MainMgr.cs"
 "Assets/02. Script/01. Mgr/NetMgr.cs"
 "Assets/02. Script/01. Mgr/ProtocolMgr.cs"
+"Assets/02. Script/01. Mgr/RoomMgr.cs"
 "Assets/02. Script/01. Mgr/WindowMgr.cs"
 "Assets/02. Script/Network.cs"
 "Assets/02. Script/Packet.cs"
@@ -350,6 +352,7 @@
 "Assets/02. Script/Singleton/Singleton.cs"
 "Assets/02. Script/State/LobbyState.cs"
 "Assets/02. Script/State/LoginState.cs"
+"Assets/02. Script/State/StageState.cs"
 "Assets/02. Script/State/State.cs"
 "Assets/Room.cs"
 -langversion:9.0

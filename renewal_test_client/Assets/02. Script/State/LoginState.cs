@@ -13,7 +13,7 @@ namespace test_client_unity
             ENTER_LOBBY,
         }
 
-        public override void Recv(Byte[] _buf, uint _protocol)
+        public override void Recv(Byte[] _buf, Byte[] _protocol)
         {
             int result = new int();
             string msg = null;
@@ -22,9 +22,12 @@ namespace test_client_unity
             teve.buf = new Byte[4096];
             Array.Copy(_buf, teve.buf, _buf.Length);
 
-            switch (_protocol) // 프로토콜에 따라서 언패킹
+            int sub_protocol = NetMgr.Instance.m_netWork.GetSubProtocol(_protocol);
+
+            switch (sub_protocol) // 프로토콜에 따라서 언패킹
             {
                 case (int)LoginMgr.SUB_PROTOCOL.LOGIN_RESULT:
+
                     LoginMgr.Instance.Unpackpacket(_buf, ref result, ref msg);
                     Debug.Log(msg);
 
@@ -67,13 +70,12 @@ namespace test_client_unity
                     LoginMgr.Instance.EnterMenu();
                     break;
                 case (int)EVENT.ENTER_LOBBY:
-                    NetMgr.Instance.m_curState = NetMgr.Instance.m_lobbyState;
                     LoginMgr.Instance.EnterLobby();
                     break;
             }
         }
 
-        public override void Send(Byte[] _buf, uint _protocol)
+        public override void Send(Byte[] _buf, int _protocol)
         {
             switch (_protocol)
             {

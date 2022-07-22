@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 namespace test_client_unity
 {
+    // 로그인, 가입, 메뉴, 메인메뉴
     public class LoginMgr : Singleton<LoginMgr> // login, join mgr
     {
         public enum SUB_PROTOCOL
@@ -44,7 +45,9 @@ namespace test_client_unity
             ENTER_LOGIN,
             ENTER_JOIN,
             JOIN,
-            LOGIN
+            LOGIN,
+            LOGOUT,
+            ENTER_MAIN_MENU,
         }
 
         [System.Serializable]
@@ -68,6 +71,17 @@ namespace test_client_unity
             login.onClick.AddListener(Click_LoginBtn);
             m_btnDic.TryGetValue(BTN_TYPE.JOIN, out Button join);
             join.onClick.AddListener(Click_JoinBtn);
+            m_btnDic.TryGetValue(BTN_TYPE.LOGOUT, out Button logout);
+            logout.onClick.AddListener(Click_LogoutBtn);
+            m_btnDic.TryGetValue(BTN_TYPE.ENTER_MAIN_MENU, out Button enter_main_menu);
+            enter_main_menu.onClick.AddListener(Click_EnterMainmenuBtn);
+        }
+
+        public void Click_EnterMainmenuBtn() // 메인메뉴 버튼
+        {
+            WindowMgr.Instance.ChangeState(WindowMgr.WINDOW_TYPE.MENU, WindowMgr.WINDOW_TYPE.MAIN_MENU);
+
+            Debug.Log("메인메뉴 버튼 클릭");
         }
 
         // 가입화면 들어가기
@@ -77,8 +91,9 @@ namespace test_client_unity
             // - Key값에 해당하는 value를 가져온다.
             WindowMgr.Instance.ChangeState(WindowMgr.WINDOW_TYPE.LOGIN, WindowMgr.WINDOW_TYPE.JOIN);
 
-            Debug.Log("가입화면 들어가기");
+            Debug.Log("가입화면 버튼 클릭");
         }
+
         // 로그인화면 들어가기
         public void Click_EnterLoginBtn()
         {
@@ -132,18 +147,19 @@ namespace test_client_unity
             }
             else
             {
+                t_Eve eve = new t_Eve();
+
                 uint protocol = 0;
                 ProtocolMgr.Instance.AddSubProtocol(ref protocol, (uint)LoginMgr.SUB_PROTOCOL.JOIN_INFO);
 
-                Byte[] buf = new Byte[4096];
-                int size = Packpacket(
-                    ref buf,
+                eve.buf_size = Packpacket(
+                    ref eve.buf,
                     (int)protocol,
                     join_id.text,
                     join_pw.text,
                     join_nick.text);
 
-                NetMgr.Instance.m_netWork.Send(buf, size);
+                NetMgr.Instance.m_sendQue.Enqueue(eve);
 
                 Debug.Log("가입 시도");
             }
@@ -178,14 +194,17 @@ namespace test_client_unity
 
             Debug.Log("Enter 메뉴화면");
         }
-        public void EnterLobby() // 멀티선택시 로비로 입장.
+
+        public void EnterLobby() // 멀티 선택시 로비로 입장.
         {
+            NetMgr.Instance.m_curState = NetMgr.Instance.m_lobbyState;
+
             WindowMgr.Instance.ChangeState(WindowMgr.WINDOW_TYPE.MAIN_MENU, WindowMgr.WINDOW_TYPE.LOBBY);
-            
+
             t_Eve eve = new t_Eve();
 
             uint protocol = 0;
-            ProtocolMgr.Instance.AddSubProtocol(ref protocol, (uint)LobbyMgr.SUB_PROTOCOL.ROOMLIST_UPDATE);
+            ProtocolMgr.Instance.AddSubProtocol(ref protocol, (uint)LobbyMgr.SUB_PROTOCOL.LOBBY);
             ProtocolMgr.Instance.AddDetailProtocol(ref protocol, (uint)LobbyMgr.DETAIL_PROTOCOL.MULTI);
 
             eve.buf_size = NetMgr.Instance.m_netWork.PackPacket(
@@ -198,15 +217,19 @@ namespace test_client_unity
 
             Debug.Log("로비입장");
         }
-        public void OnLogoutBtn() // 로그아웃
+
+        public void Click_LogoutBtn() // 로그아웃
         {
             WindowMgr.Instance.ChangeState(WindowMgr.WINDOW_TYPE.MENU, WindowMgr.WINDOW_TYPE.LOGIN);
 
             t_Eve eve = new t_Eve();
 
+            uint protocol = 0;
+            ProtocolMgr.Instance.AddSubProtocol(ref protocol, (uint)LoginMgr.SUB_PROTOCOL.LOGOUT_INFO);
+
             eve.buf_size = NetMgr.Instance.m_netWork.PackPacket(
                 ref eve.buf,
-                (int)LoginMgr.SUB_PROTOCOL.LOGOUT_INFO,
+                (int)protocol,
                 null,
                 0);
 
@@ -246,44 +269,36 @@ namespace test_client_unity
 
         public int Packpacket(ref Byte[] _buf, int _protocol, string _id, string _pw, string _nick)
         {
+            _buf = new Byte[4096];
+
+            Byte[] data_buf = new Byte[4096];
+
             int id_size = _id.Length * 2;
             int pw_size = _pw.Length * 2;
             int nick_size = _nick.Length * 2;
 
-            // 전체 데이터 사이즈 / 프로토콜 / 전체 데이터 사이즈 / ID 사이즈 / ID / PW 사이즈 / PW / NICK 사이즈 / NICK
-            int size = sizeof(int) + sizeof(int) + id_size + sizeof(int) + pw_size + sizeof(int) + nick_size + sizeof(int); // 총사이즈
+            // 전체 데이터 사이즈 / 프로토콜 / 데이터 사이즈 / ID 사이즈 / ID / PW 사이즈 / PW / NICK 사이즈 / NICK
             int len = 0;
 
-            // 전체 데이터 사이즈
-            BitConverter.GetBytes(size).CopyTo(_buf, len);
+            BitConverter.GetBytes(id_size).CopyTo(data_buf, len);
             len = len + sizeof(int);
 
-            BitConverter.GetBytes(_protocol).CopyTo(_buf, len);
-            len = len + sizeof(int);
-
-            // 전체 데이터 사이즈 +
-            BitConverter.GetBytes(size).CopyTo(_buf, len);
-            len = len + sizeof(int);
-
-            BitConverter.GetBytes(id_size).CopyTo(_buf, len);
-            len = len + sizeof(int);
-
-            Encoding.Unicode.GetBytes(_id).CopyTo(_buf, len);
+            Encoding.Unicode.GetBytes(_id).CopyTo(data_buf, len);
             len = len + id_size;
 
-            BitConverter.GetBytes(pw_size).CopyTo(_buf, len);
+            BitConverter.GetBytes(pw_size).CopyTo(data_buf, len);
             len = len + sizeof(int);
 
-            Encoding.Unicode.GetBytes(_pw).CopyTo(_buf, len);
+            Encoding.Unicode.GetBytes(_pw).CopyTo(data_buf, len);
             len = len + pw_size;
 
-            BitConverter.GetBytes(nick_size).CopyTo(_buf, len);
+            BitConverter.GetBytes(nick_size).CopyTo(data_buf, len);
             len = len + sizeof(int);
 
-            Encoding.Unicode.GetBytes(_nick).CopyTo(_buf, len);
+            Encoding.Unicode.GetBytes(_nick).CopyTo(data_buf, len);
             len = len + nick_size;
 
-            return len;
+            return NetMgr.Instance.m_netWork.PackPacket(ref _buf, _protocol, data_buf, len);
         }
 
         public void Unpackpacket(Byte[] _buf, ref int _result, ref string _msg)

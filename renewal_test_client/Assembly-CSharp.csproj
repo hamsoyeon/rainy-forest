@@ -57,6 +57,7 @@
     <Compile Include="Assets\02. Script\Packet.cs" />
     <Compile Include="Assets\Room.cs" />
     <Compile Include="Assets\02. Script\01. Mgr\WindowMgr.cs" />
+    <Compile Include="Assets\01. Default\initialize.cs" />
     <Compile Include="Assets\02. Script\01. Mgr\LobbyMgr.cs" />
     <Compile Include="Assets\02. Script\SerializableDictionary\SerializableDictionary.cs" />
     <Compile Include="Assets\02. Script\State\LobbyState.cs" />
@@ -64,9 +65,11 @@
     <Compile Include="Assets\02. Script\01. Mgr\NetMgr.cs" />
     <Compile Include="Assets\02. Script\Network.cs" />
     <Compile Include="Assets\02. Script\01. Mgr\LoginMgr.cs" />
+    <Compile Include="Assets\02. Script\01. Mgr\RoomMgr.cs" />
     <Compile Include="Assets\02. Script\State\LoginState.cs" />
     <Compile Include="Assets\02. Script\Singleton\Singleton.cs" />
-    <Compile Include="Assets\01. Default\initialize.cs" />
+    <Compile Include="Assets\02. Script\01. Mgr\MainMgr.cs" />
+    <Compile Include="Assets\02. Script\State\StageState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

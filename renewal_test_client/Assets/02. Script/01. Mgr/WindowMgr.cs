@@ -13,6 +13,7 @@ namespace test_client_unity
             MENU,
             MAIN_MENU,
             LOBBY,
+            STAGE,
         };
 
         [System.Serializable]

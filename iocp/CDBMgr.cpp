@@ -52,6 +52,8 @@ void CDBMgr::End()
 {
 	mysql_stmt_close(m_stmt_set);
 	mysql_close(&m_mysql);
+	const char* str = mysql_error(&m_mysql);
+	//mysql_close(&m_mysql);
 }
 
 void CDBMgr::SetJoin(list<t_UserInfo*> _users)

@@ -17,6 +17,9 @@ namespace test_client_unity
             int len = 0;
             int total_size = sizeof(int) + sizeof(int) + sizeof(int) + _data_size; // 패킷넘버 / 프로토콜 / 데이터 사이즈 / 데이터
 
+            if (_data_size == 0) // 프로토콜만 보내는 경우 데이터 사이즈가 들어갈 필요없다.
+                total_size -= sizeof(int);
+
             Byte[] tmp_byte = BitConverter.GetBytes(total_size);
             Array.Copy(tmp_byte, 0, _buf, len, sizeof(int)); // 총 데이터 사이즈 ( 이건 전체 데이터 사이즈를 받고 버림 )
             len = len + sizeof(int);
@@ -43,33 +46,37 @@ namespace test_client_unity
             return len;
         }
 
-        public uint GetMainProtocol(Byte[] _buf)
+        public Byte[] GetProtocol(Byte[] _buf)
         {
-            int len = sizeof(int);
+            Byte[] protocol_byte = new Byte[4];
+            int len = sizeof(int); // 패킷넘버 건너뛰고
+            Array.Copy(_buf, len, protocol_byte, 0, sizeof(int));
+            return protocol_byte;
+        }
 
+        public int GetMainProtocol(Byte[] _buf)
+        {
             Byte[] bytes_protocol = new Byte[4];
-            Array.Copy(_buf, len, bytes_protocol, 0, sizeof(int));
-            uint protocol = ProtocolMgr.Instance.GetMainProtocol(bytes_protocol);
+            Array.Copy(_buf, 0, bytes_protocol, 0, sizeof(int));
+            int protocol = ProtocolMgr.Instance.GetMainProtocol(bytes_protocol);
             return protocol;
         }
 
-        public uint GetSubProtocol(Byte[] _buf)
+        public int GetSubProtocol(Byte[] _buf)
         {
-            int len = sizeof(int);
-
             Byte[] bytes_protocol = new Byte[4];
-            Array.Copy(_buf, len, bytes_protocol, 0, sizeof(int));
-            uint protocol = ProtocolMgr.Instance.GetSubProtocol(bytes_protocol);
+            Array.Copy(_buf, 0, bytes_protocol, 0, sizeof(int));
+            int protocol = ProtocolMgr.Instance.GetSubProtocol(bytes_protocol);
             return protocol;
         }
 
-        public uint GetDetailProtocol(Byte[] _buf)
+        public int GetDetailProtocol(Byte[] _buf)
         {
             int len = sizeof(int);
 
             Byte[] bytes_protocol = new Byte[4];
-            Array.Copy(_buf, len, bytes_protocol, 0, sizeof(int));
-            uint protocol = ProtocolMgr.Instance.GetDetailProtocol(bytes_protocol);
+            Array.Copy(_buf, 0, bytes_protocol, 0, sizeof(int));
+            int protocol = ProtocolMgr.Instance.GetDetailProtocol(bytes_protocol);
             return protocol;
         }
 

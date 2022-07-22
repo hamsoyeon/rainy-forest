@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\PC-04\Desktop\심화학기\server\iocp\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\PC-04\Desktop\심화학기\test_sector_server\test_sector_server\iocp\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

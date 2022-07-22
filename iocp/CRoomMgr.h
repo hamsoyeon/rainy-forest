@@ -8,15 +8,15 @@ class CLock;
 
 struct tRoom
 {
-	tRoom(const TCHAR* _roomName, int _roomNum) {
+	tRoom(const TCHAR* _roomName, int _roomNum, CSession* _player) {
 		wcscpy(roomName, _roomName);
 		roomNum = _roomNum;
+		playerList.push_back(_player);
 	}
 
 	TCHAR roomName[ROOM_NAME_LEN];
 	int roomNum;
 	list<CSession*> playerList;
-
 };
 
 class CRoomMgr
@@ -38,7 +38,8 @@ public:
 
 	//void EnterRoomProc(CSession* _ptr);
 	//void ExitRoomProc(CSession* _ptr);
-	void MakeRoom(CSession* _ptr);
+	void MakeRoom(TCHAR* _roomName, CSession* _ptr);
+	void EnterRoom(CSession* _ptr, int _num);
 	void DeleteRoom(CSession* _ptr);
 
 public:

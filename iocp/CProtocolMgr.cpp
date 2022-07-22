@@ -54,7 +54,19 @@ void CProtocolMgr::AddSubProtocol(unsigned long* _protocolmem, unsigned long _pr
 
 void CProtocolMgr::AddDetailProtocol(unsigned long* _protocolmem, unsigned long _protocoltype)
 {
-	unsigned long detail_protocol = _protocoltype << 16;
+	unsigned long detail_protocol;
+
+	//if ((*_protocolmem & 0X0000ff00) == 0)
+	//{
+	//	detail_protocol = _protocoltype << 8;
+	//}
+	//else
+	//{
+	//	detail_protocol = _protocoltype << 4;
+	//}
+
+	detail_protocol = _protocoltype << 8;
+
 	*_protocolmem |= detail_protocol;
-	//*_protocolmem = *_protocolmem | _protocoltype;
+	//*_protocolmem |= _protocoltype;
 }

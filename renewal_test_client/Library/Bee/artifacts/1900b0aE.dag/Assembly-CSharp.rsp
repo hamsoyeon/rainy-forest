@@ -343,6 +343,7 @@
 "Assets/02. Script/01. Mgr/LoginMgr.cs"
 "Assets/02. Script/01. Mgr/NetMgr.cs"
 "Assets/02. Script/01. Mgr/ProtocolMgr.cs"
+"Assets/02. Script/01. Mgr/RoomMgr.cs"
 "Assets/02. Script/01. Mgr/WindowMgr.cs"
 "Assets/02. Script/Network.cs"
 "Assets/02. Script/Packet.cs"

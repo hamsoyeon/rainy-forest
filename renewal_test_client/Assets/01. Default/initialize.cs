@@ -6,10 +6,6 @@ namespace test_client_unity
 {
     public class Initialize : MonoBehaviour
     {
-        void Start()
-        {
-            WindowMgr windowMgr = WindowMgr.Instance;
-        }
     }
 }
 

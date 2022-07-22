@@ -16,23 +16,23 @@ namespace test_client_unity
         }
 
         // main_protocol
-        public uint GetMainProtocol(Byte[] _bytes)
+        public int GetMainProtocol(Byte[] _bytes)
         {
-            uint protocol = BitConverter.ToUInt32(_bytes, 0);
-            return (0xff000000 & protocol) >> 24;
+            int protocol = BitConverter.ToInt32(_bytes, 0);
+            return (0xff00000 & protocol) >> 24;
         }
 
         // sub_protocol
-        public uint GetSubProtocol(Byte[] _bytes)
+        public int GetSubProtocol(Byte[] _bytes)
         {
-            uint protocol = BitConverter.ToUInt32(_bytes, 0);
+            int protocol = BitConverter.ToInt32(_bytes, 0);
             return (0x00ff0000 & protocol) >> 16;
         }
 
         // detail_protocol
-        public uint GetDetailProtocol(Byte[] _bytes)
+        public int GetDetailProtocol(Byte[] _bytes)
         {
-            uint protocol = BitConverter.ToUInt32(_bytes, 0);
+            int protocol = BitConverter.ToInt32(_bytes, 0);
             return (0x0000ffff & protocol) >> 8;
         }
 
